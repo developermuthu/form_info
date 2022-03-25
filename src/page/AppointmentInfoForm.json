@@ -1,0 +1,121 @@
+[
+    {
+        "label":"Contact Info",
+        "type":"header"
+    },
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "contact name",
+        "value": "",
+        "name": "contact_name",
+        "type": "text",
+        "errorMessage":""
+    },
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "phone number",
+        "value": "",
+        "name": "phone_number",
+        "type": "number",
+        "errorMessage":""
+    },  
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "Service Location",
+        "value": "",
+        "name": "service_location",
+        "type": "text",
+        "errorMessage":""
+    },
+    {
+        "label":"Service Info",
+        "type":"header"
+    },
+    
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "Subject",
+        "value": "",
+        "name": "subject",
+        "type": "text",
+        "errorMessage":""
+       
+
+    },
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "description",
+        "value": "",
+        "name": "description",
+        "type": "textarea",
+        "errorMessage":""
+        
+    },
+
+    {
+        "label":"Appointment Info",
+        "type":"header"
+    },
+
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "service group",
+        "value": "",
+        "name": "bankAccountNo",
+        "type": "select",
+        "options":[],
+        "errorMessage":""
+    },
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "field technician",
+        "value": "",
+        "name": "field_technician",
+        "type": "select",
+        "options":[],
+        "errorMessage":""
+    },
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "Appointment Start Time",
+        "value": "",
+        "name": "start_time",
+        "type": "datetime",
+        "errorMessage":""
+    },
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "Appointment End Time",
+        "value": "",
+        "name": "end_time",
+        "type": "datetime",
+        "errorMessage":""
+    },
+    {
+        "label":"Properties",
+        "type":"header"
+    },
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "Status",
+        "value": "",
+        "name": "status",
+        "type": "select",
+        "options":[
+            {"label":"Open","value":"Open"}
+        ],
+        "errorMessage":""
+    },
+    {
+        "className":"col-md-12 col-sm-12 col-lg-12 mb-1",
+        "label": "Priority",
+        "value": "",
+        "name": "priority",
+        "type": "select",
+        "options":[
+            {"label":"Low","value":"Low"}
+        ],
+        "errorMessage":""
+    }
+   
+]

@@ -1,0 +1,57 @@
+{
+        "userCount": 1000,
+        "usersPerYear":[
+            {
+                "year": "2017",
+                "no_of_Users": 100
+            },
+            {
+                "year": "2018",
+                "no_of_Users": 250
+            },
+            {
+                "year": "2019",
+                "no_of_Users": 250
+            },
+            {
+                "year": "2020",
+                "no_of_Users": 400
+            }
+        ],
+        "overTimeUsers":[
+            {
+                "userType": "School 1",
+                "no_of_OverTimeUsers": 70
+            },
+            {
+                "userType": "School 2",
+                "no_of_OverTimeUsers": 420
+            },
+            {
+                "userType": "School 3",
+                "no_of_OverTimeUsers": 150
+            },
+            {
+                "userType": "School 4",
+                "no_of_OverTimeUsers": 100
+            }
+        ],
+        "users":[
+            {
+                "userType": "School 1",
+                "no_of_Users": 100
+            },
+            {
+                "userType": "School 2",
+                "no_of_Users": 400
+            },
+            {
+                "userType": "School 3",
+                "no_of_Users": 300
+            },
+            {
+                "userType": "School 4",
+                "no_of_Users": 200
+            }
+        ]
+}
