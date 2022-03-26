@@ -11,6 +11,7 @@ interface stateInterface {
     modal: boolean
     applicationData: any
     applicationField: any
+    viewData: any
     finalValidation: boolean
 }
 class AppointmentInfo extends Component<{}, stateInterface> {
@@ -22,6 +23,7 @@ class AppointmentInfo extends Component<{}, stateInterface> {
             applicationField: [],
             modal: false,
             applicationData: {},
+            viewData: [],
             finalValidation: false
         }
     }
@@ -47,6 +49,10 @@ class AppointmentInfo extends Component<{}, stateInterface> {
 
         let _appicantField = [...this.state.applicationField]
 
+        let _finalViewData = [...this.state.viewData]
+
+        _finalViewData.push(_appicantData)
+
         let finalValidation = true
 
         _appicantField.forEach((item: any, index: number) => {
@@ -65,7 +71,7 @@ class AppointmentInfo extends Component<{}, stateInterface> {
 
         if (finalValidation) {
 
-            this.setState({ finalValidation: true })
+            this.setState({ finalValidation: true, viewData: _finalViewData })
             window.alert(JSON.stringify(_appicantData))
 
 
@@ -109,7 +115,9 @@ class AppointmentInfo extends Component<{}, stateInterface> {
     }
     render() {
 
-        const { applicationData, applicationField, finalValidation } = this.state
+        const { applicationData, applicationField, finalValidation, viewData } = this.state
+
+        console.log("viewData",viewData)
 
         return (
             <>
@@ -131,7 +139,7 @@ class AppointmentInfo extends Component<{}, stateInterface> {
 
 
                                 <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                    Click to view 
+                                    Click to view
                                 </button>
                                 <div className="modal fade show" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div className="modal-dialog modal-lg">
@@ -287,6 +295,46 @@ class AppointmentInfo extends Component<{}, stateInterface> {
                                             </div>
                                         </div>
                                     </div>
+                                </div>
+
+                                <div>
+
+                                    {
+                                        viewData.map((viewItem: any, viewIndex: number) => {
+
+                                            return <>
+
+                                                <div className="card mt-2">
+                                                    <div className='card-header'>
+                                                        <label><h5 style={{ fontWeight: "bold" }}>{`Appointment Info ${viewIndex}`}</h5></label>
+                                                    </div>
+                                                    <div className="card-body row">
+                                                        {
+                                                            Object.keys(viewItem).map((keyItem, keyIndex) => {
+
+                                                                if (viewItem[keyItem]) {
+
+                                                                    return <>
+
+                                                                        <div className='col-md-6 col-lg-6 col-sm-12'>
+
+                                                                            <label style={{textTransform:"capitalize" }} ><h5 style={{fontWeight:"bold", fontSize:14}}>{keyItem.replace(/_/g, "")}</h5></label> : {viewItem[keyItem]}
+                                                                        </div>
+
+                                                                    </>
+                                                                }
+
+
+                                                            })
+                                                        }
+
+                                                    </div>
+                                                </div>
+                                            </>
+                                        })
+                                    }
+
+
                                 </div>
                             </div>
                         </div>
