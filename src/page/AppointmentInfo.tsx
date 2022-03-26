@@ -1,8 +1,8 @@
 import { Component } from 'react'
-
 import Select from "react-select"
-import MainPage from '../component/MainPage'
+import logo from "../component/images/logo.png"
 import AppointmentInfoForm from "./AppointmentInfoForm.json"
+
 
 
 
@@ -11,7 +11,7 @@ interface stateInterface {
     modal: boolean
     applicationData: any
     applicationField: any
-    finalValidation:boolean
+    finalValidation: boolean
 }
 class AppointmentInfo extends Component<{}, stateInterface> {
     constructor(props: {}) {
@@ -22,7 +22,7 @@ class AppointmentInfo extends Component<{}, stateInterface> {
             applicationField: [],
             modal: false,
             applicationData: {},
-            finalValidation:false
+            finalValidation: false
         }
     }
 
@@ -65,7 +65,7 @@ class AppointmentInfo extends Component<{}, stateInterface> {
 
         if (finalValidation) {
 
-            this.setState({finalValidation:true})
+            this.setState({ finalValidation: true })
             window.alert(JSON.stringify(_appicantData))
 
 
@@ -97,7 +97,7 @@ class AppointmentInfo extends Component<{}, stateInterface> {
 
                     item.errorMessage = ""
 
-                
+
                 }
 
             }
@@ -109,172 +109,189 @@ class AppointmentInfo extends Component<{}, stateInterface> {
     }
     render() {
 
-        const { applicationData, applicationField,finalValidation } = this.state
+        const { applicationData, applicationField, finalValidation } = this.state
 
         return (
             <>
-                <MainPage header={{ title: "Form Info" }}>
+                <div id="page">
+                    <header className="py-3  border-bottom shadow bg-info container-fluid">
+                        <div
+                            className="container-fluid "
+                            style={{ gridTemplateColumns: "1fr 2fr" }}
+                        >
+                            <h2>
+                                <img src={logo} alt='img' width={"120px"} height={"30px"} />
+                                <span style={{ position: "absolute", right: "10px" }}>Form Info</span>
+                            </h2>
+                        </div>
+                    </header>
+                    <div className="container-fluid">
+                        <div className="row flex-nowrap">
+                            <div className="col py-3">
 
 
-                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Launch demo modal
-                    </button>
-                    <div className="modal fade show" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                        <div className="modal-dialog modal-lg">
-                            <div className="modal-content">
-                                <div className="modal-header">
-                                    <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
-                                    <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                </div>
-                                <div className="modal-body">
+                                <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    Click to view 
+                                </button>
+                                <div className="modal fade show" id="exampleModal" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div className="modal-dialog modal-lg">
+                                        <div className="modal-content">
+                                            <div className="modal-header">
+                                                <h5 className="modal-title" id="exampleModalLabel">Modal title</h5>
+                                                <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div className="modal-body">
 
-                                    {
-                                        applicationField.map((item: any, index: number) => {
+                                                {
+                                                    applicationField.map((item: any, index: number) => {
 
-                                            return <>
+                                                        return <>
 
-                                                <div className={item.className}>
-                                                    {
-                                                        item.type !== "header" ?
-                                                            <div className="row">
-                                                                <div className="col-md-12 col-sm-12">
-                                                                    <label className='form-label m-0' htmlFor='passportPhoto' style={{ textTransform: "capitalize" }}>
-                                                                        {
-                                                                            item.label.replace(/_/g, " ")
-                                                                        }
-                                                                        {/* <small className='text-danger'>*</small> */}
-                                                                    </label>
-                                                                </div>
-                                                            </div>
-                                                            :
-                                                            <>
-                                                                <div>
-
-                                                                    <h4 className='mb-3 mt-3' style={{ textAlign: "center", fontWeight: "bold" }}> {item.label}</h4>
-
-                                                                </div>
-                                                            </>
-                                                    }
-
-
-
-                                                    {item.type === "text" ?
-                                                        <div key={index}>
-                                                            <input
-                                                                type={item.type}
-                                                                placeholder={item.title}
-                                                                className='form-control'
-                                                                name={item.name}
-                                                                value={applicationData[item.name]}
-                                                                onChange={(e) => this.handleChange(e.target.value, item.name)}
-
-                                                            />
-                                                            <span className="form-label" style={{ color: "red", textTransform: "capitalize" }}>
-                                                                {item.errorMessage ? item.errorMessage.replace(/_/g, " ") : ""}
-                                                            </span>
-                                                        </div>
-                                                        : item.type === "date" ?
-                                                            <div key={index}>
-                                                                <input
-                                                                    type={item.type}
-                                                                    placeholder={item.title}
-                                                                    className='form-control'
-                                                                    name={item.name}
-                                                                    onChange={(e) => this.handleChange(e.target.value, item.name)}
-                                                                    value={applicationData[item.name]}
-
-                                                                />
-                                                                <span className="form-label" style={{ color: "red", textTransform: "capitalize" }}>
-                                                                    {item.errorMessage ? item.errorMessage.replace(/_/g, " ") : ""}
-                                                                </span>
-                                                            </div>
-                                                            :
-                                                            item.type === "select" ?
-
-
-                                                                <div key={index}>
-
-
-
-                                                                    <Select
-                                                                        options={item.options}
-                                                                        name={item.name}
-                                                                        value={
-                                                                            applicationData[item.name] && item.options.filter((key: any) => key.value === applicationData[item.name])
-                                                                        }
-
-
-                                                                        onChange={(value) => this.handleChange(value.value, item.name)}
-                                                                    />
-
-                                                                    <span className="form-label" style={{ color: "red", textTransform: "capitalize" }}>
-                                                                        {item.errorMessage ? item.errorMessage.replace(/_/g, " ") : ""}
-                                                                    </span>
-                                                                </div>
-
-                                                                : item.type === "textarea" ?
-
-                                                                    <textarea
-                                                                        className='form-control'
-                                                                        name={item.name}
-                                                                        onChange={(e) => this.handleChange(e.target.value, item.name)}
-                                                                        value={applicationData[item.name]}
-                                                                    />
-
-                                                                    : item.type === "number" ?
+                                                            <div className={item.className}>
+                                                                {
+                                                                    item.type !== "header" ?
+                                                                        <div className="row">
+                                                                            <div className="col-md-12 col-sm-12">
+                                                                                <label className='form-label m-0' htmlFor='passportPhoto' style={{ textTransform: "capitalize" }}>
+                                                                                    {
+                                                                                        item.label.replace(/_/g, " ")
+                                                                                    }
+                                                                                    {/* <small className='text-danger'>*</small> */}
+                                                                                </label>
+                                                                            </div>
+                                                                        </div>
+                                                                        :
                                                                         <>
+                                                                            <div>
+
+                                                                                <h4 className='mb-3 mt-3' style={{ textAlign: "center", fontWeight: "bold" }}> {item.label}</h4>
+
+                                                                            </div>
+                                                                        </>
+                                                                }
+
+
+
+                                                                {item.type === "text" ?
+                                                                    <div key={index}>
+                                                                        <input
+                                                                            type={item.type}
+                                                                            placeholder={item.title}
+                                                                            className='form-control'
+                                                                            name={item.name}
+                                                                            value={applicationData[item.name]}
+                                                                            onChange={(e) => this.handleChange(e.target.value, item.name)}
+
+                                                                        />
+                                                                        <span className="form-label" style={{ color: "red", textTransform: "capitalize" }}>
+                                                                            {item.errorMessage ? item.errorMessage.replace(/_/g, " ") : ""}
+                                                                        </span>
+                                                                    </div>
+                                                                    : item.type === "date" ?
+                                                                        <div key={index}>
                                                                             <input
+                                                                                type={item.type}
+                                                                                placeholder={item.title}
                                                                                 className='form-control'
                                                                                 name={item.name}
-                                                                                type="number"
                                                                                 onChange={(e) => this.handleChange(e.target.value, item.name)}
                                                                                 value={applicationData[item.name]}
-                                                                            />
 
+                                                                            />
                                                                             <span className="form-label" style={{ color: "red", textTransform: "capitalize" }}>
                                                                                 {item.errorMessage ? item.errorMessage.replace(/_/g, " ") : ""}
                                                                             </span>
-                                                                        </>
+                                                                        </div>
+                                                                        :
+                                                                        item.type === "select" ?
+
+
+                                                                            <div key={index}>
 
 
 
-                                                                        : item.type === "datetime" ?
+                                                                                <Select
+                                                                                    options={item.options}
+                                                                                    name={item.name}
+                                                                                    value={
+                                                                                        applicationData[item.name] && item.options.filter((key: any) => key.value === applicationData[item.name])
+                                                                                    }
 
-                                                                            <input
-                                                                                className='form-control'
-                                                                                name={item.name}
-                                                                                type="date "
-                                                                                onChange={(e) => this.handleChange(e.target.value, item.name)}
-                                                                                value={applicationData[item.name]}
-                                                                            />
 
-                                                                            : ""}
+                                                                                    onChange={(value) => this.handleChange(value.value, item.name)}
+                                                                                />
+
+                                                                                <span className="form-label" style={{ color: "red", textTransform: "capitalize" }}>
+                                                                                    {item.errorMessage ? item.errorMessage.replace(/_/g, " ") : ""}
+                                                                                </span>
+                                                                            </div>
+
+                                                                            : item.type === "textarea" ?
+
+                                                                                <textarea
+                                                                                    className='form-control'
+                                                                                    name={item.name}
+                                                                                    onChange={(e) => this.handleChange(e.target.value, item.name)}
+                                                                                    value={applicationData[item.name]}
+                                                                                />
+
+                                                                                : item.type === "number" ?
+                                                                                    <>
+                                                                                        <input
+                                                                                            className='form-control'
+                                                                                            name={item.name}
+                                                                                            type="number"
+                                                                                            onChange={(e) => this.handleChange(e.target.value, item.name)}
+                                                                                            value={applicationData[item.name]}
+                                                                                        />
+
+                                                                                        <span className="form-label" style={{ color: "red", textTransform: "capitalize" }}>
+                                                                                            {item.errorMessage ? item.errorMessage.replace(/_/g, " ") : ""}
+                                                                                        </span>
+                                                                                    </>
+
+
+
+                                                                                    : item.type === "datetime" ?
+
+                                                                                        <input
+                                                                                            className='form-control'
+                                                                                            name={item.name}
+                                                                                            type="date "
+                                                                                            onChange={(e) => this.handleChange(e.target.value, item.name)}
+                                                                                            value={applicationData[item.name]}
+                                                                                        />
+
+                                                                                        : ""}
+                                                            </div>
+                                                        </>
+
+                                                    })
+                                                }
+
+                                            </div>
+                                            <div className="modal-footer">
+
+                                                <div>
+
+                                                    <input type="checkbox" style={{ marginRight: 4 }}>
+
+                                                    </input>
+                                                    <label>Create Another</label>
                                                 </div>
-                                            </>
+                                                <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 
-                                        })
-                                    }
-
-                                </div>
-                                <div className="modal-footer">
-
-                                    <div>
-
-                                        <input type="checkbox" style={{ marginRight: 4 }}>
-
-                                        </input>
-                                        <label>Create Another</label>
+                                                {finalValidation ? <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={(e: any) => this.handleSubmit(e)}>Save changes</button> :
+                                                    <button type="button" className="btn btn-primary" onClick={(e: any) => this.handleSubmit(e)}>Save changes</button>
+                                                }
+                                            </div>
+                                        </div>
                                     </div>
-                                    <button type="button" className="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-
-                                    {finalValidation ? <button type="button" className="btn btn-primary" data-bs-dismiss="modal" onClick={(e: any) => this.handleSubmit(e)}>Save changes</button> :
-                                <button type="button" className="btn btn-primary" onClick={(e: any) => this.handleSubmit(e)}>Save changes</button>
-                                }
                                 </div>
                             </div>
                         </div>
                     </div>
-                </MainPage>
+                </div>
 
 
             </>
